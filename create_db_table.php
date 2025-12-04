@@ -32,7 +32,33 @@ mysqli_report(MYSQLI_REPORT_OFF);
 // }
 
 
+$servername = 'localhost';
+$username = 'root';
+$passowrd = '';
+$db_name = 'selim';
 
+// connection database
+$db_connect = mysqli_connect($servername, $username, $passowrd, $db_name);
+if(!$db_connect){
+    die('Database not connecting '. mysqli_connect_error());
+} else{
+    echo 'Database Connect Successfully <br>';
+}
+
+// create a table in selim db
+$sql = 'CREATE TABLE book(
+    slno INT(11) AUTO_INCREMENT PRIMARY KEY,
+    bookname VARCHAR(100) NOT NULL,
+    bookprice INT(11),
+    publication VARCHAR(100),
+    vendorname VARCHAR(100)
+)';
+
+if(mysqli_query($db_connect, $sql)){
+    echo 'Table creating successfully';
+}else{
+    echo 'Table creating error ' . mysqli_error($db_connect);
+}
 
 
 
